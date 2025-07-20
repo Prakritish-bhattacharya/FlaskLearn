@@ -1,0 +1,24 @@
+<!-- templates/hello.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello Form</title>
+</head>
+<body>
+    <h1>Welcome to the Hello Form!</h1>
+
+    <!-- This form sends a POST request to the '/hello' route -->
+    <form method="post">
+        <label for="username">Enter your name:</label>
+        <input type="text" id="username" name="username" required />
+        <button type="submit">Submit</button>
+    </form>
+
+    <!-- If name is submitted, display a greeting -->
+    {% if name %}
+        <h2>Hello, {{ name }}!</h2>
+    {% endif %}
+</body>
+</html>
