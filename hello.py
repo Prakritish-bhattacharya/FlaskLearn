@@ -17,3 +17,7 @@ def contactus():
 @app.route('/registration')
 def registration():
     return render_template('registration.html')
+
+@app.route('/success')
+def success():
+    return render_template('success.html')
