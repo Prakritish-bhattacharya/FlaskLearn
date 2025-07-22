@@ -1,37 +1,17 @@
-from flask import Flask
-from markupsafe import escape
-from flask import url_for
-from flask import render_template
-from flask import request
+from flask import Flask, render_template, request, redirect, flash, url_for
 
 app = Flask(__name__)
+app.secret_key = 'your_secret_key'  # Needed for flash to work
 
-@app.route('/register', methods=["GET", "POST"])
-def register():
-    if request.method == "POST":
-        name = request.form.get("txtName", "").strip()
-        email = request.form.get("txtEmail", "").strip()
-        mobile = request.form.get("txtMobile", "").strip()
-        
-        # simple validation rule
-        if not name or not email or not mobile:
-            return render_template(
-                "form.html",
-                error = "All fileds are required.",
-                old={"txtName": name, "txtEmail": email, "txtMobile": mobile}
-            )
-            
-        if "@" not in email:
-            return render_template(
-                "form.html",
-                error = "Invalid email address.",
-                old={"txtName": name, "txtEmail": email, "txtMobile": mobile}
-            )
+@app.route('/', methods=['GET', 'POST'])
+def index():
+    if request.method == 'POST':
+        name = request.form['username']
+        if name:  # basic validation
+            flash(f"Welcome, {name}!", "success")
+            return redirect(url_for('index'))
+        else:
+            flash("Name cannot be empty!", "error")
+            return redirect(url_for('index'))
 
-# Success
-        collect = {"Name": name, "Email": email, "Mobile": mobile}
-        return render_template("success.html", data=collect)
-
-    # GET request: show blank form
-    return render_template("form.html", error=None, old=None)
-        
+    return render_template('index.html')
