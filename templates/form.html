@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Register</title>
+</head>
+<body>
+  <h1>Register</h1>
+
+  {# Show error message if passed from Flask #}
+  {% if error %}
+    <p style="color:red;">{{ error }}</p>
+  {% endif %}
+
+  <form action="/register" method="POST">
+    <label>Name:</label>
+    <input type="text" name="txtName" value="{{ old.txtName if old else '' }}" >
+    <br>
+
+    <label>Email:</label>
+    <input type="text" name="txtEmail" value="{{ old.txtEmail if old else '' }}" >
+    <br>
+
+    <label>Mobile:</label>
+    <input type="text" name="txtMobile" value="{{ old.txtMobile if old else '' }}" >
+    <br><br>
+
+    <button type="submit">Submit</button>
+  </form>
+</body>
+</html>

@@ -6,23 +6,32 @@ from flask import request
 
 app = Flask(__name__)
 
-@app.route('/about')
-def about():
-    return render_template('about.html')
+@app.route('/register', methods=["GET", "POST"])
+def register():
+    if request.method == "POST":
+        name = request.form.get("txtName", "").strip()
+        email = request.form.get("txtEmail", "").strip()
+        mobile = request.form.get("txtMobile", "").strip()
+        
+        # simple validation rule
+        if not name or not email or not mobile:
+            return render_template(
+                "form.html",
+                error = "All fileds are required.",
+                old={"txtName": name, "txtEmail": email, "txtMobile": mobile}
+            )
+            
+        if "@" not in email:
+            return render_template(
+                "form.html",
+                error = "Invalid email address.",
+                old={"txtName": name, "txtEmail": email, "txtMobile": mobile}
+            )
 
-@app.route('/contact')
-def contactus():
-    return render_template('contactus.html')
+# Success
+        collect = {"Name": name, "Email": email, "Mobile": mobile}
+        return render_template("success.html", data=collect)
 
-@app.route('/registration')
-def registration():
-    return render_template('registration.html')
-
-@app.route('/success', methods=['POST'])
-def success():
-    collect = {
-        'Name': request.form['txtName'],
-        'Email': request.form['txtEmail'],
-        'Mobile': request.form['txtMobile']
-    }
-    return render_template('success.html', data = collect)
+    # GET request: show blank form
+    return render_template("form.html", error=None, old=None)
+        
