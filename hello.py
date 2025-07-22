@@ -60,15 +60,3 @@ app = Flask(__name__)
 # def index():
 #     return '<p>This is the home page. Go to <a href="/hello/">/hello/</a></p>'
 
-# ! define the route that handles both GET and POST request
-@app.route('/hello/', methods=["GET" , "POST"])
-# define function for routes
-def hello():
-    # if the request method is POST , that means form data is submitted
-    if request.method == "POST":
-        #  Extreact 'username' from form data
-        username = request.form["username"]
-        #  render the same template but pass the username to show the response
-        return render_template("hello.html", name = username)
-    # if it is a GET request (user just visiting the URL), show the form
-    return render_template("hello.html", name = None)
