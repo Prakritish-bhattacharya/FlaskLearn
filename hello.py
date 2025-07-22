@@ -18,6 +18,11 @@ def contactus():
 def registration():
     return render_template('registration.html')
 
-@app.route('/success')
+@app.route('/success', methods=['POST'])
 def success():
-    return render_template('success.html')
+    collect = {
+        'Name': request.form['txtName'],
+        'Email': request.form['txtEmail'],
+        'Mobile': request.form['txtMobile']
+    }
+    return render_template('success.html', data = collect)
