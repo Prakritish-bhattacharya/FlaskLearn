@@ -1,8 +1,8 @@
 from flask import Flask, abort, render_template, request, redirect, flash, url_for
 
 app = Flask(__name__)
-app.secret_key = 'your_secret_key'  # Needed for flash to work
-
+# use secret key for flashing
+app.secret_key = "I love you"
 
 @app.route('/form', methods =['POST','GET'])
 def handle_form():
