@@ -1,34 +1,19 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Flask Form</title>
+    <meta charset="UTF-8">
+    <title>Form Page</title>
 </head>
 <body>
-    <h1>Enter Your Details</h1>
+    <h1>Submit Your Info</h1>
+    <form method="POST" action="/form">
+        <label>Name:</label>
+        <input type="text" name="name"><br><br>
 
-    <!-- Flash Messages -->
-    {% with messages = get_flashed_messages() %}
-      {% if messages %}
-        <ul style="color: red;">
-          {% for message in messages %}
-            <li>{{ message }}</li>
-          {% endfor %}
-        </ul>
-      {% endif %}
-    {% endwith %}
+        <label>Email:</label>
+        <input type="email" name="email"><br><br>
 
-    <form method="POST" action="/success">
-        <label for="txtName">Name:</label>
-        <input type="text" name="txtName" id="txtName" /><br><br>
-
-        <label for="txtEmail">Email:</label>
-        <input type="email" name="txtEmail" id="txtEmail" /><br><br>
-
-        <label for="txtMobile">Mobile:</label>
-        <input type="text" name="txtMobile" id="txtMobile" /><br><br>
-
-        <input type="submit" value="Submit" />
+        <input type="submit" value="Submit">
     </form>
 </body>
 </html>
-
