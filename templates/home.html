@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Flask Form</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+</head>
+<body>
+   {% extends "base.html" %}
+
+   {% block title %}Home Page{% endblock %}
+
+   {% block content %}
+    <h2>Welcome to the Home Page</h2>
+    <p>This is content from home.html</p>
+   {% endblock %}
+
+    
+</body>
+</html>
