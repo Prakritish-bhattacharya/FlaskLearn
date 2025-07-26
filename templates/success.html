@@ -4,17 +4,15 @@
     <title>Success</title>
 </head>
 <body>
-    <!-- Flash Message -->
-    {% with messages = get_flashed_messages(category_filter=["success"]) %}
-      {% if messages %}
-        <p style="color: green;">{{ messages[0] }}</p>
-      {% endif %}
-    {% endwith %}
-
-    <h2>Submitted Details</h2>
-    <p><strong>Name:</strong> {{ data.Name }}</p>
-    <p><strong>Email:</strong> {{ data.Email }}</p>
-    <p><strong>Mobile:</strong> {{ data.Mobile }}</p>
+    <table border="2">
+      {% for key,value in result.items() %}
+      <tr>
+        <th>{{key}}</th>
+        <td>{{value}}</td>
+      </tr>
+      {% endfor %}
+    </table>
+    
 
     <a href="/">Back to Form</a>
 </body>
