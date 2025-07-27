@@ -1,19 +1,37 @@
+<!-- templates/home.html -->
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Flask Form</title>
-    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+    <meta charset="UTF-8">
+    <title>Flask SQLAlchemy App</title>
 </head>
 <body>
-   {% extends "base.html" %}
+    <h1>Flask + SQLAlchemy + WTForms</h1>
 
-   {% block title %}Home Page{% endblock %}
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul>
+          {% for message in messages %}
+            <li>{{ message }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
 
-   {% block content %}
-    <h2>Welcome to the Home Page</h2>
-    <p>This is content from home.html</p>
-   {% endblock %}
+    <form method="POST">
+        {{ form.hidden_tag() }}
 
-    
+        <p>
+            {{ form.name.label }}<br>
+            {{ form.name(size=32) }}
+        </p>
+
+        <p>
+            {{ form.email.label }}<br>
+            {{ form.email(size=32) }}
+        </p>
+
+        <p>{{ form.submit() }}</p>
+    </form>
 </body>
 </html>
