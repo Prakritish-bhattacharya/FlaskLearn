@@ -1,26 +1,20 @@
-# app.py
-from flask import Flask, render_template, redirect, url_for, flash
-from flask_sqlalchemy import SQLAlchemy
-# from forms import UserForm
-from form import UserForm
-from models import db, User
-import os
+from flask import Flask, render_template
+from flask_wtf import FlaskForm
+from wtforms import StringField, SubmitField
+from wtforms.validators import DataRequired, Email, ValidationError
+
 
 app = Flask(__name__)
-app.config.from_pyfile('config.py')
+app.secret_key = "osdfbn;"
 
-db.init_app(app)
+class MyForm(FlaskForm):
+    name = StringField('Name', validators=[DataRequired()])
+    email = StringField('Email', validators=[DataRequired(), Email()] )
+    submit = SubmitField('Submit')
 
-with app.app_context():
-    db.create_all()
-
-@app.route('/', methods=['GET', 'POST'])
-def home():
-    form = UserForm()
-    if form.validate_on_submit():
-        user = User(name=form.name.data, email=form.email.data)
-        db.session.add(user)
-        db.session.commit()
-        flash('User added successfully!')
-        return redirect(url_for('home'))
-    return render_template('home.html', form=form)
+@app.route('/')
+def index():
+    form = MyForm()
+    return render_template('index.html', form=form)
+if __name__ == '__main__':
+    app.run(debug=True)
