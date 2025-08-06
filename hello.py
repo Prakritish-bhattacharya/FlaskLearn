@@ -18,3 +18,7 @@ def index():
     return render_template('index.html', form=form)
 if __name__ == '__main__':
     app.run(debug=True)
+    
+@app.route('/app1')
+def app1():
+    return "<h1></h1>"
