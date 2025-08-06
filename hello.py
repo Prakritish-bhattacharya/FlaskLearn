@@ -21,4 +21,4 @@ if __name__ == '__main__':
     
 @app.route('/app1')
 def app1():
-    return "<h1>;ovhk.vzb</h1>"
+    return "<h1>;ovhk.vz</h1>"
