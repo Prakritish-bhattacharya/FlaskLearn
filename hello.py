@@ -19,6 +19,3 @@ def index():
 if __name__ == '__main__':
     app.run(debug=True)
     
-@app.route('/app1')
-def app1():
-    return "<h1>12345678912345678912345678912345678912345678912345678</h1>"
