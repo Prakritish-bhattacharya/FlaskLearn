@@ -11,7 +11,7 @@
 
 
 
-<form action = "/wtform" method = "POST">
+<form action = "/wtform" method = "POST" enctype = "multipart/form-data">
     {{ sendToFrontedForm.hidden_tag()}}
 
     {{ sendToFrontedForm.name.label(for = "name") }}
@@ -39,6 +39,16 @@
     {% if sendToFrontedForm.phone.errors%}
         <ul class="errors text-denger">
             {%for error in sendToFrontedForm.phone.errors%}
+                <li>{{error}}</li>
+            {% endfor%}
+        </ul>
+    {%endif%}
+
+    {{ sendToFrontedForm.file.label(for = "file")}}<br>
+    {{ sendToFrontedForm.file(id = "file", class = "form-control")}}<br>
+    {% if sendToFrontedForm.file.errors %}
+        <ul class = "errors text-denger">
+            {%for error in sendToFrontedForm.file.errors%}
                 <li>{{error}}</li>
             {% endfor%}
         </ul>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Flask Form</title>
+</head>
+<body>
+  <h1>Form data</h1>
+   <table>
+    <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phone</th>
+    </tr>
+    {% for Form in formDt%}
+    <tr>
+        <td>{{ Form.name}}</td>
+        <td>{{ Form.email}}</td>
+        <td>{{Form.phone}}</td>
+    </tr>
+    {%endfor%}
+</table>
+    
+</body>
+</html>
