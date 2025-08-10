@@ -71,7 +71,7 @@ def index():
 @app.route('/formdata')
 def formData():
     formDt = FormData.query.all()
-    return render_template('formdata.htmlgfgbfxngrdfnglnkdfl.ghn', formDt = formDt)
+    return render_template('formdata.htmlgfgbfxngrdfnglnkdfl.gh', formDt = formDt)
 
 @app.route('/users/<int:id>/edit', methods = ['GET','POST'])
 def edit(id):
