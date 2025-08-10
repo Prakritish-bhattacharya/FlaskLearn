@@ -10,12 +10,16 @@
         <th>Name</th>
         <th>Email</th>
         <th>Phone</th>
+        <th>Actions</th>
     </tr>
     {% for Form in formDt%}
     <tr>
         <td>{{ Form.name}}</td>
         <td>{{ Form.email}}</td>
         <td>{{Form.phone}}</td>
+        <td>
+            <a href = "/users/{{ Form.id }}/edit">Edit</a>
+        </td>
     </tr>
     {%endfor%}
 </table>

@@ -1,5 +1,5 @@
 import os
-from flask import Flask, render_template, request
+from flask import Flask, redirect, render_template, request, url_for
 from flask_sqlalchemy import SQLAlchemy
 from flask_wtf import FlaskForm
 from wtforms import EmailField, FileField, StringField, SubmitField
@@ -71,7 +71,20 @@ def index():
 @app.route('/formdata')
 def formData():
     formDt = FormData.query.all()
-    return render_template('formdata.html', formDt = formDt)
+    return render_template('formdata.htmlgfgbfxngrdfnglnkdfl.ghnmbrdgfml', formDt = formDt)
+
+@app.route('/users/<int:id>/edit', methods = ['GET','POST'])
+def edit(id):
+    formData = FormData.query.get(id)
+    form = MyForm(obj = formData)
+    # formIns = MyForm()
+    if form.validate_on_submit():
+        formData.name = form.name.data
+        formData.email = form.email.data
+        formData.phone = form.phone.data
+        db.session.commit()
+        return redirect(url_for('formData'))
+    return render_template('edit.html', formData = formData, form = form)
     
 if __name__ == '__main__':
     app.run( debug = True )
