@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Flask Form</title>
+</head>
+<body>
+  <h1>Form data</h1>
+   <!DOCTYPE html>
+<html>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+
+    </style>
+<body>
+
+
+
+</body>
+</html>
+
+<h2>Contacts</h2>
+
+<ul>
+{% for contact in contacts.items %}
+    <li>{{ contact.name }} - {{ contact.email }} - {{ contact.phone }}</li>
+{% endfor %}
+</ul>
+
+<!-- Pagination Controls -->
+<div>
+    {% if contacts.has_prev %}
+        <a href="{{ url_for('list_contacts', page=contacts.prev_num) }}">Previous</a>
+    {% endif %}
+
+    Page {{ contacts.page }} of {{ contacts.pages }}
+
+    {% if contacts.has_next %}
+        <a href="{{ url_for('list_contacts', page=contacts.next_num) }}">Next</a>
+    {% endif %}
+</div>
+
+
+
+
+</body>
+</html>
