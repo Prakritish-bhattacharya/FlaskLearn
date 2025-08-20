@@ -123,6 +123,6 @@ def edit(id):
 @app.route('/register', methods = ['GET','POST'])
 def register():
     form = RegistrationForm()
-    return render_template('auth/register.html1', form = form)
+    return render_template('auth/register.html', form = form)
 if __name__ == '__main__':
     app.run( debug = True )
