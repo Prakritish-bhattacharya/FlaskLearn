@@ -14,5 +14,5 @@ app.register_blueprint(main_bp)
 app.register_blueprint(auth_bp, url_prefix="/auth")
 
 # 7) development entrypoint: run with reloader and debugger
-if __name__ == "__main__1":
+if __name__ == "__main__":
     app.run(debug=True)
